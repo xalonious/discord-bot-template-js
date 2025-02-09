@@ -1,1 +1,1 @@
-# A well written discord.js bot template
+# A modern discord.js bot template
