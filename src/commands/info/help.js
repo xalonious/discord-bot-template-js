@@ -116,7 +116,7 @@ module.exports = {
                 .setTitle(`${category.charAt(0).toUpperCase() + category.slice(1)} Commands`)
                 .setDescription(`List of all the commands in this category`)
                 .setThumbnail(client.user.displayAvatarURL())
-                .setFooter({ iconURL: client.user.displayAvatarURL(), text: "teks cafe helper" });
+                .setFooter({ iconURL: client.user.displayAvatarURL(), text: `${client.user.username}` });
 
             if (categoryCommands.length > 0) {
                 categoryEmbed.addFields(
