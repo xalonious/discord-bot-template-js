@@ -57,6 +57,11 @@ module.exports = {
                     }).filter(perm => perm !== null).join(", ")
                     : "No permissions required";
 
+
+                const roles = commandFound.rolesRequired
+                    ? commandFound.rolesRequired.map(role => `<@&${role}>`).join(", ")
+                    : "No roles required";
+
                 const commandEmbed = new EmbedBuilder()
                     .setColor(0x0099ff)
                     .setTitle(`Command: ${commandFound.name}`)
@@ -65,6 +70,7 @@ module.exports = {
                         { name: "Description", value: commandFound.description || "No description provided" },
                         { name: "Usage", value: commandFound.usage ? `\`/${commandFound.name} ${commandFound.usage}\`` : `\`/${commandFound.name}\`` },
                         { name: "Permissions", value: permissions },
+                        { name: "Roles Required", value: roles },
                     )
                     .setThumbnail(client.user.displayAvatarURL());
 

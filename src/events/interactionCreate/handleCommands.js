@@ -19,7 +19,11 @@ module.exports = async (client, interaction) => {
     }
 
     if (commandObject.permissionsRequired?.every((permission) => !interaction.member.permissions.has(permission))) {
-        return interaction.reply("You do not have permission to run that command!");
+        return interaction.reply({ content: "You do not have permission to run that command!", flags: MessageFlags.Ephemeral });
+    }
+
+    if (commandObject.rolesRequired?.length > 0 && !interaction.member.roles.cache.some(role => commandObject.rolesRequired.includes(role.id))) {
+        return interaction.reply({ content: "You do not have permission to run that command!", flags: MessageFlags.Ephemeral });
     }
 
 
