@@ -24,7 +24,7 @@ module.exports = {
 
             for (const file of commandFiles) {
                 const { default: command } = await import(`./../${folder}/${file}`);
-                commands.push({ name: command.name, description: command.description, usage: command.usage, permissionsRequired: command.permissionsRequired});
+                commands.push({ name: command.name, description: command.description, usage: command.usage, permissionsRequired: command.permissionsRequired, rolesRequired: command.rolesRequired });
             }
 
             commandByCategory[folder] = commands;
