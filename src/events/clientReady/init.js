@@ -1,15 +1,29 @@
 const { ActivityType } = require("discord.js");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const getLocalCommands = require("../../utils/getLocalCommands");
+const { brand, ok, dim, banner } = require("../../utils/logger");
 
 module.exports = async (client) => {
-  console.log(`✅  | ${client.user.tag}`)
+  const localCommands = getLocalCommands();
 
-    client.user.setActivity({
-        name: "The server",
-        type: ActivityType.Watching
-    })
-    
-  mongoose.connect(process.env.MONGOURL).then(console.log('✅  | Connected to DB'))
+  banner([
+    `${brand("🤖 Bot Online")}`,
+    `${ok("User:")} ${client.user.tag}`,
+    `${ok("Events:")} ${client.eventCount} registered`,
+    `${ok("Commands:")} ${localCommands.length} loaded`, 
+    `${dim(new Date().toLocaleString())}`,
+  ]);
 
-}
+  client.user.setActivity({
+    name: "The server",
+    type: ActivityType.Watching,
+  });
+
+  try {
+    await mongoose.connect(process.env.MONGOURL);
+    console.log(ok("✅ Connected to DB"));
+  } catch (e) {
+    console.log(`❌ DB connection failed: ${e.message}`);
+  }
+};
