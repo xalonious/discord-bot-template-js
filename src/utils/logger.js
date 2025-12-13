@@ -1,5 +1,5 @@
-const chalk = require("chalk").default;
-const boxen = require("boxen").default;
+const chalk = require("chalk");
+const boxen = require("boxen");
 
 const brand = chalk.bold.cyan;
 const ok = chalk.green;
