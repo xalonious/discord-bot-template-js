@@ -22,7 +22,7 @@ module.exports = async (client) => {
       if (!localMatch || localMatch.deleted) {
         await applicationCommands.delete(existingCommand.id);
         deleted++;
-        console.log(`🗑️  | Deleted command ${existingCommand.name}`);
+        console.log(`🗑️ Deleted command ${existingCommand.name}`);
       }
     }
 
@@ -43,7 +43,7 @@ module.exports = async (client) => {
           });
 
           edited++;
-          console.log(`🔀  | Edited command ${name}`);
+          console.log(`🔀 Edited command ${name}`);
         }
       } else {
         await applicationCommands.create({
@@ -53,7 +53,7 @@ module.exports = async (client) => {
         });
 
         created++;
-        console.log(`👍  | Registered command ${name}`);
+        console.log(`👍 Registered command ${name}`);
       }
     }
 
@@ -63,14 +63,14 @@ module.exports = async (client) => {
     console.log(
       ok
         ? ok(`✅ Commands registered: ${registered} (${created} new, ${edited} updated, ${deleted} removed)`)
-        : `✅  | Commands registered: ${registered} (${created} new, ${edited} updated, ${deleted} removed)`
+        : `✅ Commands registered: ${registered} (${created} new, ${edited} updated, ${deleted} removed)`
     );
 
   } catch (error) {
     console.log(
       warn
-        ? warn(`⚠️  | An error occurred while registering commands: ${error}`)
-        : `⚠️  | An error occurred while registering commands: ${error}`
+        ? warn(`⚠️ An error occurred while registering commands: ${error}`)
+        : `⚠️ An error occurred while registering commands: ${error}`
     );
   }
 };
